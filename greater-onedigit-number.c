@@ -1,52 +1,52 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
-    unsigned long long n, m;
+    char n[501], m[501];
 
-    while(scanf("%llu %llu", &n, &m), !(n == 0 && m == 0))
+    while(1)
     {
-        unsigned long long sumN, sumM;
-        do
+        scanf("%s %s", n, m);
+
+        if(strcmp(n, "0") == 0 && strcmp(m, "0") == 0)
         {
-            sumN = 0;
-            printf("sumN initial value: %llu\n", sumN);
-            while(n > 0)
-            {
-                printf("----------\nstart of the loop\n");
-                sumN = sumN + n % 10;
-                printf("sumN: %llu\n", sumN);
-                n = n / 10;
-                printf("n: %llu\n", n);
-                printf("----------\nend of the loop\n");
-            }
-            printf("----------\nfinal numbers\n");
-            printf("n: %llu\n", n);
-            printf("sumN: %llu\n", sumN);
-            n = sumN;
-            printf("n taking sumN: %llu\n", n);
+            return 0;
         }
-        while(sumN > 9);
-        do
+
+        int sumN = 0;
+        for(int i = 0; n[i] != '\0'; i++)
         {
-            sumM = 0;
-            printf("sumM initial value: %llu\n", sumM);
-            while(m > 0)
-            {
-                printf("----------\nstart of the loop\n");
-                sumM = sumM + m % 10;
-                printf("sumM: %llu\n", sumM);
-                m = m / 10;
-                printf("m: %llu\n", m);
-                printf("----------\nend of the loop\n");
-            }
-            printf("----------\nfinal numbers\n");
-            printf("M: %llu\n", m);
-            printf("sumM: %llu\n", sumM);
-            m = sumM;
-            printf("m taking sumM: %llu\n", m);
+            sumN += n[i] - '0';
         }
-        while(sumM > 9);
+
+        while(sumN > 9)
+        {
+            int sumTemp = 0;
+            while(sumN > 0)
+            {
+                sumTemp += sumN % 10;
+                sumN /= 10;
+            }
+            sumN = sumTemp;
+        }
+
+        int sumM = 0;
+        for(int i = 0; m[i] != '\0'; i++)
+        {
+            sumM += m[i] - '0';
+        }
+
+        while(sumM > 9)
+        {
+            int sumTemp = 0;
+            while(sumM > 0)
+            {
+                sumTemp += sumM % 10;
+                sumM /= 10;
+            }
+            sumM = sumTemp;
+        }
 
         if(sumN > sumM)
         {
@@ -60,9 +60,9 @@ int main()
             }
             else
             {
-                printf("0\n");
+                printf("0\n");  
             }
-        }
+        } 
     }
     return 0;
 }
