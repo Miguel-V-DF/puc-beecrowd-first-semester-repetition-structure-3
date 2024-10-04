@@ -4,16 +4,12 @@
 int main()
 {
     char n[501], m[501];
+    int verify = 1;
+    
+    scanf("%s %s", n, m);
 
-    while(1)
+    while(verify == 1)
     {
-        scanf("%s %s", n, m);
-
-        if(strcmp(n, "0") == 0 && strcmp(m, "0") == 0)
-        {
-            return 0;
-        }
-
         int sumN = 0;
         for(int i = 0; n[i] != '\0'; i++)
         {
@@ -63,6 +59,13 @@ int main()
                 printf("0\n");  
             }
         } 
+
+        scanf("%s %s", n, m);
+
+        if(strcmp(n, "0") == 0 && strcmp(m, "0") == 0)
+        {
+            verify = 0;
+        }
     }
     return 0;
 }
